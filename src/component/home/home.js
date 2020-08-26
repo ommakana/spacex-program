@@ -1,9 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import './home.scss'
 
 import { connect } from "react-redux";
-import { apiURL, generateApiUrl } from '../api/api'
-import { fetchData, loadData } from '../actions/index'
+import { apiURL, generateApiUrl } from '../../api/api'
+import { fetchData, loadData } from '../../actions/index'
+
+import SpaceTileComponent from "../spaceTileComponent/spaceTileComponent";
 
 class Home extends React.Component {
 
@@ -44,34 +47,38 @@ class Home extends React.Component {
     this.props.fetchData();
 
     axios.get(generateApiUrl())
-    .then(res => {
-      this.props.loadData(res.data);
-    })
+      .then(res => {
+        this.props.loadData(res.data);
+      })
 
 
   }
 
   render() {
-    return (<React.Fragment>
-      <h1>{this.props.name}</h1>
-      <button onClick={this.handleFilter} name="launch_year" value="2014">2014</button>
-      <button onClick={this.handleFilter} name="launch_year" value="2015">2015</button>
-      <h3>Launch success</h3>
-      <button onClick={this.handleFilter} name="launch_success" value="true">True</button>
-      <button onClick={this.handleFilter} name="launch_success" value="false">False</button>
+    return (<div className="inner_container">
 
-      <h3>Land success</h3>
-      <button onClick={this.handleFilter} name="land_success" value="true">True</button>
-      <button onClick={this.handleFilter} name="land_success" value="false">False</button>
+      <div className="filter_wrapper">
+        
+        <button onClick={this.handleFilter} name="launch_year" value="2014">2014</button>
+        <button onClick={this.handleFilter} name="launch_year" value="2015">2015</button>
+        <h3>Launch success</h3>
+        <button onClick={this.handleFilter} name="launch_success" value="true">True</button>
+        <button onClick={this.handleFilter} name="launch_success" value="false">False</button>
 
-      <div className="container">
+        <h3>Land success</h3>
+        <button onClick={this.handleFilter} name="land_success" value="true">True</button>
+        <button onClick={this.handleFilter} name="land_success" value="false">False</button>
+
+      </div>
+
+      <div className="spacex_tile_container">
         {!this.props.loading ? this.props.data.map((item, index) =>
-          <p key={index}>{item.mission_name}</p>
+         <SpaceTileComponent item = {item} key={index}/>
         ) : <h2>Loading. . . . .</h2>
         }
       </div>
 
-    </React.Fragment>
+    </div>
     )
   }
 }

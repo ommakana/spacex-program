@@ -9,7 +9,7 @@ import App from './App';
 
 ReactDOM.hydrate(
   <Provider store={store}>
-    <App />
+    <App name="SpaceX Launch Programs" />
   </Provider>,
   document.getElementById('root')
 );

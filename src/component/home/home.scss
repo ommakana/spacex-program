@@ -1,0 +1,10 @@
+.inner_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.spacex_tile_container {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}

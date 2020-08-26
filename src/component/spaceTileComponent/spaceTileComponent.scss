@@ -1,0 +1,35 @@
+.spacex_tile {
+    width: 23%;
+    border-radius: 3%;
+    background: white;
+    text-align: center;
+    margin: 1%;
+    img {
+        width: 70%;
+        background: lightgray;
+        margin: 5% 0;
+    }
+
+    .tile_description {
+        text-align: left;
+        padding: 5%;
+        color: rebeccapurple;
+
+        .title {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: black;
+            font-weight: bolder;
+            display: inline-block;
+        } 
+        .mission_name, .mission_name+span {
+            color: rebeccapurple;
+            font-weight: bolder;
+            font-family: sans-serif;
+        }
+    
+        li {
+            text-align: left;
+        }
+    }
+    
+}
