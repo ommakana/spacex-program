@@ -1,0 +1,21 @@
+.filter-button-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.filter-button {
+    // background: lightgreen;
+    // border: 1px solid;
+    flex: 0 0 50%;
+    &.active {
+        border: 2px solid;
+    }
+}
+
+.filter-header {
+    padding: 2%;
+    border-bottom: 2px solid lightgray;
+    text-align: center;
+}

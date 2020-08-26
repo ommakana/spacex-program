@@ -7,8 +7,9 @@ import { apiURL, generateApiUrl } from '../../api/api'
 import { fetchData, loadData } from '../../actions/index'
 
 import SpaceTileComponent from "../spaceTileComponent/spaceTileComponent";
+import { FilterComponent } from "../filterComponent/filterComponent";
 
-class Home extends React.Component {
+class Home extends React.PureComponent {
 
   state = {
     firstParam: true
@@ -51,29 +52,32 @@ class Home extends React.Component {
         this.props.loadData(res.data);
       })
 
-
   }
+
+  clearAllFilters = () => {
+
+    this.props.fetchData();
+    axios.get(`${apiURL}`)
+      .then(res => {
+        this.props.loadData(res.data);
+        window.history.pushState(null, null, `${window.location.pathname}`);
+      });
+  
+   }
 
   render() {
     return (<div className="inner_container">
 
       <div className="filter_wrapper">
-        
-        <button onClick={this.handleFilter} name="launch_year" value="2014">2014</button>
-        <button onClick={this.handleFilter} name="launch_year" value="2015">2015</button>
-        <h3>Launch success</h3>
-        <button onClick={this.handleFilter} name="launch_success" value="true">True</button>
-        <button onClick={this.handleFilter} name="launch_success" value="false">False</button>
 
-        <h3>Land success</h3>
-        <button onClick={this.handleFilter} name="land_success" value="true">True</button>
-        <button onClick={this.handleFilter} name="land_success" value="false">False</button>
-
+        <FilterComponent handleFilter={this.handleFilter} />
+        <br/>
+        <button onClick={this.clearAllFilters}>Clear all</button>
       </div>
 
       <div className="spacex_tile_container">
         {!this.props.loading ? this.props.data.map((item, index) =>
-         <SpaceTileComponent item = {item} key={index}/>
+          <SpaceTileComponent item={item} key={index} />
         ) : <h2>Loading. . . . .</h2>
         }
       </div>

@@ -1,10 +1,25 @@
 .inner_container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.filter_wrapper {
+    width: 20%;
+    background: white;
+    border-radius: 2px;
+    text-align: center;
 }
 
 .spacex_tile_container {
     display: flex;
     justify-content: left;
     flex-wrap: wrap;
+    width: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+    .spacex_tile_container, .filter_wrapper {
+        width: 100%;
+    }
 }
