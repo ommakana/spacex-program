@@ -3,11 +3,6 @@ import { createStore } from "redux";
 
 const initialState = {
     data: [],
-    appliedFilters: {
-        year: null,
-        launchSuccess: null,
-        landingSuccess: null
-    },
     loading: true,
     isFirstQueryParam: true
 };

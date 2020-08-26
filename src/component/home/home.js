@@ -85,7 +85,6 @@ class Home extends React.PureComponent {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return state;
 };
 
