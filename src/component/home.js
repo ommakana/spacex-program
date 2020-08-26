@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { connect } from "react-redux";
-import { apiURL } from '../api/api'
+import { apiURL, generateApiUrl } from '../api/api'
 import { fetchData, loadData } from '../actions/index'
 
 class Home extends React.Component {
@@ -41,6 +41,14 @@ class Home extends React.Component {
       }
     }
 
+    this.props.fetchData();
+
+    axios.get(generateApiUrl())
+    .then(res => {
+      this.props.loadData(res.data);
+    })
+
+
   }
 
   render() {
@@ -51,6 +59,11 @@ class Home extends React.Component {
       <h3>Launch success</h3>
       <button onClick={this.handleFilter} name="launch_success" value="true">True</button>
       <button onClick={this.handleFilter} name="launch_success" value="false">False</button>
+
+      <h3>Land success</h3>
+      <button onClick={this.handleFilter} name="land_success" value="true">True</button>
+      <button onClick={this.handleFilter} name="land_success" value="false">False</button>
+
       <div className="container">
         {!this.props.loading ? this.props.data.map((item, index) =>
           <p key={index}>{item.mission_name}</p>
