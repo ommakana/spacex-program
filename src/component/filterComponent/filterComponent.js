@@ -1,9 +1,9 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 
 import { launchYear } from "../../launchYearsStubData";
 import { LAUNCH_YEAR, LAND_SUCCESS, LAUNCH_SUCCESS } from "../../constants";
 
-import './filterComponent.scss';
+import './filterComponent.css';
 
 export const FilterComponent = memo(({ handleFilter }) => {
 

@@ -1,5 +1,5 @@
 import React from "react";
-import './spaceTileComponent.scss';
+import './spaceTileComponent.css';
 
 function SpaceTileComponent({item}) {
     return (

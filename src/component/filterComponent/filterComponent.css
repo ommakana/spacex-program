@@ -6,12 +6,10 @@
 }
 
 .filter-button {
-    // background: lightgreen;
-    // border: 1px solid;
     flex: 0 0 50%;
-    &.active {
-        border: 2px solid;
-    }
+}
+.filter-button.active {
+    border: 2px solid;
 }
 
 .filter-header {

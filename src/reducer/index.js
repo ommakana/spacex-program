@@ -1,4 +1,4 @@
-import { FETCH_DATA, FETCH_DATA_SUCCESS } from '../actions/index';
+import { FETCH_DATA, FETCH_DATA_SUCCESS, FIRST_QUERY_PARAM } from '../actions/index';
 import { createStore } from "redux";
 
 const initialState = {
@@ -8,7 +8,8 @@ const initialState = {
         launchSuccess: null,
         landingSuccess: null
     },
-    loading: true
+    loading: true,
+    isFirstQueryParam: true
 };
 
 const store = (state = initialState, action) => {
@@ -16,7 +17,6 @@ const store = (state = initialState, action) => {
     switch (action.type) {
 
         case FETCH_DATA: {
-            console.log("fetch data");
             return {
                 ...state,
                 loading: true
@@ -24,12 +24,19 @@ const store = (state = initialState, action) => {
         }
 
         case FETCH_DATA_SUCCESS: {
-            console.log("LOAD data");
 
             return {
                 ...state,
                 data: action.payload.data,
                 loading: false
+            }
+        }
+
+        case FIRST_QUERY_PARAM: {
+
+            return {
+                ...state,
+                isFirstQueryParam: action.payload.isFirstQueryParam
             }
         }
 

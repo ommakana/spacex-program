@@ -1,19 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import './home.scss'
+import './home.css'
 
 import { connect } from "react-redux";
 import { apiURL, generateApiUrl } from '../../api/api'
-import { fetchData, loadData } from '../../actions/index'
+import { fetchData, loadData, firstQueryParam } from '../../actions/index'
 
 import SpaceTileComponent from "../spaceTileComponent/spaceTileComponent";
 import { FilterComponent } from "../filterComponent/filterComponent";
 
 class Home extends React.PureComponent {
-
-  state = {
-    firstParam: true
-  }
 
   componentDidMount() {
     this.props.fetchData();
@@ -36,9 +32,9 @@ class Home extends React.PureComponent {
       window.history.pushState(null, null, newUrl.replace(replaceValue, `${filterByValue}=${event.target.value}`));
     }
     else {
-      if (this.state.firstParam) {
+      if (this.props.isFirstQueryParam) {
         window.history.pushState(null, null, `${window.location.href}?${filterByValue}=${event.target.value}`);
-        this.setState({ firstParam: false });
+        this.props.firstQueryParam(false);
       }
       else {
         window.history.pushState(null, null, `${window.location.href}&${filterByValue}=${event.target.value}`);
@@ -92,4 +88,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, { fetchData, loadData })(Home);
+export default connect(mapStateToProps, { fetchData, loadData, firstQueryParam })(Home);
