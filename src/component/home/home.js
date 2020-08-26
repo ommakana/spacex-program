@@ -56,6 +56,7 @@ class Home extends React.PureComponent {
     axios.get(`${apiURL}`)
       .then(res => {
         this.props.loadData(res.data);
+        this.props.firstQueryParam(true);
         window.history.pushState(null, null, `${window.location.pathname}`);
       });
   
@@ -72,9 +73,9 @@ class Home extends React.PureComponent {
       </div>
 
       <div className="spacex_tile_container">
-        {!this.props.loading ? this.props.data.map((item, index) =>
+        {!this.props.loading ? this.props.data.length > 0 ? this.props.data.map((item, index) =>
           <SpaceTileComponent item={item} key={index} />
-        ) : <h2>Loading. . . . .</h2>
+        ) : <h2>No results found . . .</h2> : <h2>Loading. . . . .</h2>
         }
       </div>
 
