@@ -9,6 +9,7 @@
     background: white;
     border-radius: 2px;
     text-align: center;
+    height: fit-content;
 }
 
 .spacex_tile_container {

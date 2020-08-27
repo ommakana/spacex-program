@@ -7,20 +7,13 @@ import './filterComponent.css';
 
 export const FilterComponent = memo(({ handleFilter }) => {
 
-    // const [yearLaunch, setYearLaunch] = useState(0);
-    console.log("hi");
-    function activateFilter(event, index) {
-        console.log(index);
-        // setYearLaunch(index);
-        handleFilter(event);
-    }
     return (<>
-        <p className="filter-header-text">Filters</p>
+        <h2 className="filter-header-text">Filters</h2>
 
         <p className="filter-header">Launch Year</p>
 
         <div className="filter-button-container">
-            {launchYear.map((item, index) => <button onClick={(event, index) => activateFilter(event, index)}
+            {launchYear.map((item, index) => <button onClick={handleFilter}
                 className="filter-button" value={item}
                 name={LAUNCH_YEAR} key={index}>{item}
             </button>)}

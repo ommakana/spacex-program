@@ -42,13 +42,18 @@
 .launch_description {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 .launch_description .title {
     width: 50%;
     word-wrap: break-word;
 }
+
+.launch_description p {
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 
 @media only screen and (max-width: 600px) {
     .spacex_tile {
