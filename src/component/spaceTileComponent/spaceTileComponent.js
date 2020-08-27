@@ -3,9 +3,9 @@ import './spaceTileComponent.css';
 
 function SpaceTileComponent({ item }) {
     return (
-        <div className="spacex_tile">
+        <div tabIndex="0" className="spacex_tile">
             <img alt={item.mission_name} src={item.links.mission_patch_small} />
-            <div className="tile_description" tabIndex="0">
+            <div className="tile_description">
                 <span className="mission_name">{item.mission_name}</span> <span>#{item.flight_number}</span>
                 <br />
                 <p className="title mission_id">Mission Ids:</p>
