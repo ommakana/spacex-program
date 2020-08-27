@@ -15,8 +15,9 @@ export const FilterComponent = memo(({ handleFilter }) => {
         handleFilter(event);
     }
     return (<>
+        <p className="filter-header-text">Filters</p>
 
-<p className="filter-header">Launch Year</p>
+        <p className="filter-header">Launch Year</p>
 
         <div className="filter-button-container">
             {launchYear.map((item, index) => <button onClick={(event, index) => activateFilter(event, index)}
@@ -32,7 +33,7 @@ export const FilterComponent = memo(({ handleFilter }) => {
         </div>
 
         <p className="filter-header">Successful Landing</p>
-        
+
         <div className="filter-button-container">
             {booleanButton(LAND_SUCCESS, handleFilter)}
         </div>
@@ -42,8 +43,8 @@ export const FilterComponent = memo(({ handleFilter }) => {
 
 function booleanButton(name, handleFilter) {
     return (<>
-        <button name={name} onClick={handleFilter} value="true">True</button>
-        <button name={name} onClick={handleFilter} value="false">False</button>
+        <button className="filter-button" name={name} onClick={handleFilter} value="true">True</button>
+        <button className="filter-button" name={name} onClick={handleFilter} value="false">False</button>
     </>
     )
 }

@@ -18,6 +18,14 @@
     width: 80%;
 }
 
+.filter-button {
+    padding: 5%;
+    margin: 5%;
+    background: lightgreen;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
 @media only screen and (max-width: 600px) {
     .spacex_tile_container, .filter_wrapper {
         width: 100%;

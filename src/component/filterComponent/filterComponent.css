@@ -1,19 +1,36 @@
 .filter-button-container {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
-    text-align: center;
 }
 
 .filter-button {
-    flex: 0 0 50%;
+    width: 40%;
+    padding: 5%;
+    margin: 5%;
+    background: lightgreen;
+    border: 1px solid transparent;
+    border-radius: 5px;
 }
-.filter-button.active {
-    border: 2px solid;
+.filter-button:focus {
+   background: darkgreen;
 }
 
 .filter-header {
     padding: 2%;
     border-bottom: 2px solid lightgray;
     text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.filter-header-text {
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24px;
+    padding: 5%;
+}
+
+@media only screen and (max-width: 600px) {
+    .filter-button, .filter-header {
+        font-size: 6vw;
+    }
 }

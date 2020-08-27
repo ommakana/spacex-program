@@ -69,7 +69,7 @@ class Home extends React.PureComponent {
 
         <FilterComponent handleFilter={this.handleFilter} />
         <br/>
-        <button onClick={this.clearAllFilters}>Clear all</button>
+        <button className="filter-button" onClick={this.clearAllFilters}>Clear all</button>
       </div>
 
       <div className="spacex_tile_container">
