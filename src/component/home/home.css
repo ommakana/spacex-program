@@ -31,3 +31,13 @@
         width: 100%;
     }
 }
+
+/* Tablet */
+@media only screen and (min-width:600px) and (max-width:768px) {
+    .spacex_tile_container {
+        width: 72%;
+    }
+    .filter_wrapper {
+        width: 25%;
+    }
+}
