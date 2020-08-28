@@ -1,8 +1,14 @@
 import path from 'path';
 import fs from 'fs';
+import qs from 'qs';
 import React from 'react';
 import express from 'express';
 import ReactDOMServer from 'react-dom/server';
+
+import { fetchDataOnReload } from '../src/api/api';
+
+import {Provider} from 'react-redux';
+import store from "../src/reducer/index";
 
 import App from '../src/App';
 
@@ -10,7 +16,12 @@ const PORT = process.env.PORT || 3006;
 const app = express();
 
 app.get('/', (req, res) => {
-    const app = ReactDOMServer.renderToString(<App />);
+
+  const params = qs.parse(req.query);
+
+  const data = fetchDataOnReload(params);
+  console.log(data);
+  const app = ReactDOMServer.renderToString(<Provider store={store}><App name="SpaceX Launch Programs" /></Provider>);
   
     const indexFile = path.resolve('./build/index.html');
     fs.readFile(indexFile, 'utf8', (err, data) => {
