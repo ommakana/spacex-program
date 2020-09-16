@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import './home.css'
-
 import { connect } from "react-redux";
+import { InView } from 'react-intersection-observer';
+
 import { apiURL, generateApiUrl } from '../../api/api'
 import { fetchData, loadData, firstQueryParam } from '../../actions/index'
-
 import SpaceTileComponent from "../spaceTileComponent/spaceTileComponent";
 import { FilterComponent } from "../filterComponent/filterComponent";
 
@@ -72,7 +72,12 @@ clearAllFilters = () => {
 
       <div className="spacex_tile_container">
         {!this.props.loading ? this.props.data.length > 0 ? this.props.data.map((item, index) =>
-          <SpaceTileComponent item={item} key={index} />
+          <InView triggerOnce={true} >
+            {({ inView, ref, entry }) => (
+              <SpaceTileComponent item={item} key={index} />
+            )}
+           
+            </InView>
         ) : <h2>No results found . . .</h2> : <h2>Loading. . . . .</h2>
         }
       </div>
