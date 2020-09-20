@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './spaceTileComponent.css';
 
-function SpaceTileComponent({ item }) {
+const SpaceTileComponent = ({ item }) => {
+    const targetRef = React.createRef();
+    const callback = entries => {
+        entries.forEach(element => {
+            if (element.isIntersecting) {
+                const imageSrc = element.target.getAttribute("data-src");
+                element.target.setAttribute("src", imageSrc);
+                observer.unobserve(element.target);
+            }
+        });
+      };
+  
+    const observer = new IntersectionObserver(callback, {
+    threshold: 1
+    });
+    
+    useEffect(() => {
+        observer.observe(targetRef.current);
+        return () => observer.disconnect();
+    });
+
     return (
         <div tabIndex="0" className="spacex_tile">
-            <img alt={item.mission_name} src={item.links.mission_patch_small} />
+            <img alt={item.mission_name} data-src={item.links.mission_patch_small} ref={targetRef} />
             <div className="tile_description">
                 <span className="mission_name">{item.mission_name}</span> <span>#{item.flight_number}</span>
                 <br />
@@ -28,6 +48,6 @@ function SpaceTileComponent({ item }) {
             </div>
         </div>
     )
-}
+};
 
 export default SpaceTileComponent;
