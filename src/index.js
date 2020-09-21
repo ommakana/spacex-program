@@ -6,7 +6,7 @@ import store from "./reducer/index";
 const MyApp = React.lazy(() => import("./App"));
 
 ReactDOM.render(
-  <Suspense fallback="<h1>Loading. . .</h1>">
+<Suspense fallback={<h1>Loading. . .</h1>}>
     <Provider store={store}>
       <MyApp name="SpaceX Launch Programs" />
     </Provider>
