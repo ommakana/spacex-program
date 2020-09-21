@@ -24,7 +24,7 @@ const SpaceTileComponent = ({ item }) => {
 
     return (
         <div tabIndex="0" className="spacex_tile">
-            <img alt={item.mission_name} data-src={item.links.mission_patch_small} ref={targetRef} />
+            <img width="100" height="100" alt={item.mission_name} data-src={item.links.mission_patch_small} ref={targetRef} />
             <div className="tile_description">
                 <span className="mission_name">{item.mission_name}</span> <span>#{item.flight_number}</span>
                 <br />
