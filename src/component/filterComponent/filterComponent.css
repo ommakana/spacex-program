@@ -10,6 +10,7 @@
     background: lightgreen;
     border: 1px solid transparent;
     border-radius: 5px;
+    cursor: pointer;
 }
 .filter-button:focus {
    background: darkgreen;
