@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const apiURL = "https://api.spacexdata.com/v3/launches?limit=40";
+export const apiURL = "https://api.spacexdata.com/v3/launches?limit=50";
 
 export const generateApiUrl = () => {
   let params = window.location.search;

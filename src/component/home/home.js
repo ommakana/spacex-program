@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import "./home.css";
+import "./home.scss";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -21,7 +21,13 @@ const TileContainer = styled.div``;
 
 const ZeroResults = () => <h2>No Results Found . . .</h2>;
 
-const Loading = () => <h2>Loading...</h2>;
+const Loading = () => <div className="loading">
+  <span className="loader animation-1"></span>
+  <span className="loader animation-2"></span>
+  <span className="loader animation-3"></span>
+  <span className="loader animation-4"></span>
+  <span className="loader animation-5"></span>
+</div>;
 
 class Home extends React.PureComponent {
   componentDidMount() {
