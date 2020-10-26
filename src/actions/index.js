@@ -1,6 +1,6 @@
 import { apiURL, generateApiUrl } from "../api/api";
 import axios from "axios";
-
+import idbKeyval from "../utility/idb-wrapper";
 export const FETCH_DATA = "FETCH_DATA";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
 export const FETCH_DATA_FAIL = "FETCH_DATA_FAIL";
@@ -16,19 +16,16 @@ export const fetchingData = () => {
 export const fetchData = () => {
   return (dispatch) => {
     dispatch(fetchingData());
-    try {
-      axios
+    axios
       .get(`${apiURL}`)
       .then((res) => {
-        storeDataLocal(res);
+        idbKeyval.set("data", res.data);
         dispatch(loadData(res.data));
       })
-    }
-    catch(err) {
-      console.log("getting data locally");
-      const res = JSON.parse(localStorage.getItem("data"));
-      dispatch(loadData(res.data));
-    }
+      .catch(() => {
+        console.log("getting data from IDB");
+        idbKeyval.get("data").then((data) => dispatch(loadData(data)));
+      });
   };
 };
 
@@ -44,10 +41,6 @@ export const firstQueryParam = (isFirstQueryParam) => ({
   payload: { isFirstQueryParam },
 });
 
-export const storeDataLocal = (data) => {
-  localStorage.setItem("data", JSON.stringify(data));
-};
-
 export const applyFilters = (filterBy, value) => {
   return (dispatch) => {
     dispatch(fetchingData());
@@ -57,15 +50,16 @@ export const applyFilters = (filterBy, value) => {
         dispatch(loadData(res.data));
       })
       .catch(() => {
-        const res = JSON.parse(localStorage.getItem("data"));
-        if (res.data) {
-          const filteredData = res.data.filter((item) => {
-           return item[filterBy] === value
-          });
-          dispatch(loadData(filteredData));
-        } else {
-          console.log("no local data found");
-        }
+        idbKeyval
+          .get("data")
+          .then((data) => {
+            console.log(data);
+            const filteredData = data.filter((item) => {
+              return item[filterBy] === value;
+            });
+            dispatch(loadData(filteredData));
+          })
+          .catch(() => console.log("no local data found"));
       });
   };
 };
