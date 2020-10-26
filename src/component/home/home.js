@@ -1,11 +1,8 @@
 import React from "react";
-import axios from "axios";
 import "./home.scss";
 import { connect } from "react-redux";
 import styled from "styled-components";
-
-import { apiURL, generateApiUrl } from "../../api/api";
-import { fetchData, loadData, firstQueryParam } from "../../actions/index";
+import { fetchData, firstQueryParam, applyFilters } from "../../actions/index";
 import SpaceTileComponent from "../spaceTileComponent/spaceTileComponent";
 import { FilterComponent } from "../filterComponent/filterComponent";
 
@@ -32,9 +29,6 @@ const Loading = () => <div className="loading">
 class Home extends React.PureComponent {
   componentDidMount() {
     this.props.fetchData();
-    axios.get(`${apiURL}`).then((res) => {
-      this.props.loadData(res.data);
-    });
   }
 
   handleFilter = (event) => {
@@ -42,7 +36,6 @@ class Home extends React.PureComponent {
       let url = new URL(window.location.href);
       let urlParams = new URLSearchParams(url.search);
       let filterByValue = event.target.name;
-
       if (urlParams.has(filterByValue)) {
         let newUrl = window.location.href;
         let replaceValue = window.location.search
@@ -69,22 +62,18 @@ class Home extends React.PureComponent {
           );
         }
       }
-
-      this.props.fetchData();
-
-      axios.get(generateApiUrl()).then((res) => {
-        this.props.loadData(res.data);
-      });
+      this.props.applyFilters(filterByValue, event.target.value);
     }
   };
 
   clearAllFilters = () => {
+    let url = new URL(window.location.origin);
+    window.history.pushState(
+      null,
+      null,
+      url
+    );
     this.props.fetchData();
-    axios.get(`${apiURL}`).then((res) => {
-      this.props.loadData(res.data);
-      this.props.firstQueryParam(true);
-      window.history.pushState(null, null, `${window.location.pathname}`);
-    });
   };
 
   render() {
@@ -122,6 +111,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchData,
-  loadData,
-  firstQueryParam,
+  applyFilters,
+  firstQueryParam
 })(Home);
