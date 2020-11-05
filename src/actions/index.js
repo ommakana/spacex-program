@@ -38,7 +38,7 @@ export const loadData = (data) => {
 
 export const firstQueryParam = (isFirstQueryParam) => ({
   type: FIRST_QUERY_PARAM,
-  payload: { isFirstQueryParam },
+  payload: { isFirstQueryParam }
 });
 
 export const applyFilters = (filterBy, value) => {

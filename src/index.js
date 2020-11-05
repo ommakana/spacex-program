@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./reducer/index";
+import * as serviceWorker from './registerServiceWorker';
 
 const MyApp = React.lazy(() => import("./App"));
 
@@ -13,3 +14,5 @@ ReactDOM.render(
   </Suspense>,
   document.getElementById("root")
 );
+
+serviceWorker.register();
